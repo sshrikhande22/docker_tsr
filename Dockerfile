@@ -16,7 +16,7 @@ RUN npm run build -- --configuration=production --base-href=/
 FROM nginx:alpine
 
 # 4.Copy the built files from the 'build' stage to Nginx's web root
-COPY --from=build /app/dist/tsr_ttp/browser /usr/share/nginx/html
+COPY --from=build /app/dist/browser /usr/share/nginx/html
 
 # Nginx runs on port 80 by default
 EXPOSE 80
