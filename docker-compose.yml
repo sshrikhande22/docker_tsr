@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  # --- 1. Frontend Service (Angular/Nginx) ---
+  frontend:
+    build:
+      context: .  # Build context is the project root
+      dockerfile: Dockerfile-frontend
+    container_name: angular-frontend
+    ports:
+      # Access the frontend via http://localhost/
+      - "80:80"
+    networks:
+      - app-network
+
+  # --- 2. Backend Service (Node.js API) ---
+  backend:
+    build:
+      context: .  # Build context is the project root
+      dockerfile: Dockerfile-backend
+    container_name: api-backend
+    ports:
+      # Expose the backend for direct debugging via http://localhost:3000/
+      - "3000:3000"
+    depends_on:
+      - frontend 
+    networks:
+      - app-network
+    # CRITICAL: This is the URL your Angular code must use to access the API.
+    # 'backend' is the service name defined above, not 'localhost'.
+    environment:
+      API_URL: http://backend:3000/api/v1/ 
+
+# Define a custom network for inter-service communication
+networks:
+  app-network:
+    driver: bridge
