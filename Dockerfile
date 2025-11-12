@@ -12,13 +12,12 @@ COPY . .
 RUN npm run build -- --configuration=production --base-href=/
 
 
-RUN ls -R /app/dist
 # ===========================
 
 # --- Stage 2: Production Stage (Uses a tiny Nginx image to serve static files) ---
 FROM nginx:alpine
 
-COPY --from=build /app/dist/browser /usr/share/nginx/html
+COPY --from=build /app/dist/tsr/browser /usr/share/nginx/html
 
 # Nginx runs on port 80 by default
 EXPOSE 80
