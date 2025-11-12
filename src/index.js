@@ -14,9 +14,10 @@ app.use(cors());
 app.use(bodyParser.json());
 
 const bigquery = new BigQuery({
-  keyFilename: './src/keys.json',
-  projectId: 'elevate360-poc',
-  scopes: SCOPES,
+  // CRITICAL: JSON.parse converts the environment string back into a JavaScript object
+  credentials: JSON.parse(process.env.GCP_SERVICE_ACCOUNT_KEY),
+  projectId: 'elevate360-poc',
+  scopes: SCOPES,
 });
 // returns one row for Mounika (adjust LIKE if full name differs)
 
