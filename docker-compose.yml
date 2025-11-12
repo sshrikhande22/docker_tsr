@@ -32,6 +32,7 @@ services:
     # Environment variable for internal network usage (optional, but configured for consistency)
     environment:
       API_URL: http://backend:3000/api/v1/ 
+      GCP_SERVICE_ACCOUNT_KEY: ${GCP_SERVICE_ACCOUNT_KEY}
 
 # Define a custom network for inter-service communication
 networks:
