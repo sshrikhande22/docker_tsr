@@ -9,9 +9,6 @@ RUN npm run build -- --configuration=production --base-href=/
 # --- Stage 2: Serve the Angular app with Nginx ---
 FROM nginx:alpine
 
-# Remove default nginx config
-RUN rm /etc/nginx/conf.d/default.conf
-
 
 # CRITICAL FIX: Copy the custom nginx.conf file into the container
 # This configuration contains the /api/ reverse proxy rule.
