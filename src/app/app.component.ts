@@ -80,7 +80,7 @@ export class AppComponent implements OnInit {
   error = signal<string | null>(null);
 
   // The base URL for the Express API
-  private apiUrl = 'http://backend:3000/api/mounika'; // Adjust port if necessary
+  private apiUrl = '/api/mounika'; // Adjust port if necessary
 
 
 
