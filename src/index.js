@@ -20,7 +20,7 @@ const bigquery = new BigQuery({
 });
 // returns one row for Mounika (adjust LIKE if full name differs)
 
-app.get('/mounika', async (req, res) => {
+app.get('/api/mounika', async (req, res) => {
   try {
     // First get the table schema to get exact column names in order
     const [metadata] = await bigquery
