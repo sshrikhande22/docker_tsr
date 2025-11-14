@@ -174,6 +174,7 @@ getBarColorValue(score: number | string | null): string {
     { label: 'TTP', value: '40%', detail: 'analysis', highlight: '#FFBF00' },
     { label: 'Quality', value: '94.23%' },
     { label: 'TTM', value: '40%' },
+    { label: 'SLS', value: '85%' },
     { label: 'Innovation/Transformation Ideas', value: '4', detail: 'view details', highlight: '#FFBF00' }
   ];
 
@@ -187,6 +188,7 @@ getBarColorValue(score: number | string | null): string {
     { label: 'Well Handled Cases', value: '25' },
     { label: 'Quality', value: '94.23%' },
     { label: 'TTM', value: '50%' },
+    { label: 'SLS', value: '85%' },
     { label: 'Innovation/Transformation Ideas', value: '18', detail: 'view details', highlight: '#FFBF00' }
   ];
 
