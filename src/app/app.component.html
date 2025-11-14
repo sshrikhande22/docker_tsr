@@ -414,8 +414,35 @@
             class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 rounded-lg transition duration-200 hover:bg-gray-100">
             
             <!-- Label -->
-            <div class=pdt-header>
-              {{ metric.label }}
+            <div class="pdt-header flex items-center gap-2">
+              <span>
+                {{ metric.label }} 
+              </span>
+              <!-- extra text shown only for Security Command Center -->
+              <span *ngIf="metric.label === 'Security Command Center'"
+                    class="ml-3 text-sm text-gray-600">
+                (SLS:13.89%)
+              </span>
+              <span *ngIf="metric.label === 'Cloud Asset Inventory'"
+                    class="ml-3 text-sm text-gray-600">
+                (SLS:14.22%)
+              </span>
+              <span *ngIf="metric.label === 'IAP'"
+                    class="ml-3 text-sm text-gray-600">
+                (SLS:15.54%)
+              </span>
+              <span *ngIf="metric.label === 'IAM'"
+                    class="ml-3 text-sm text-gray-600">
+                (SLS:13.23%)
+              </span>
+              <span *ngIf="metric.label === 'VPC SC'"
+                    class="ml-3 text-sm text-gray-600">
+                (SLS:14.39%)
+              </span>
+              <span *ngIf="metric.label === 'Recaptcha'"
+                    class="ml-3 text-sm text-gray-600">
+                (SLS:13.73%)
+              </span>          
             </div>
 
             <!-- Progress Bar and Score -->
