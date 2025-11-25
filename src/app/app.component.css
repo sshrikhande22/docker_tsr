@@ -1195,3 +1195,15 @@ button, input, optgroup, select, textarea {
 .ttp-header{
 padding-bottom: 8px;
 }
+.notification-dropdown-wrapper {
+  position: absolute;
+  top: 100%; 
+  right: -4px; /* Adjust this if the triangle isn't perfectly centered on the bell */
+  width: 360px;
+  z-index: 1000;
+}
+.notification-container {
+  position: relative; /* Creates context for the absolute dropdown */
+  display: inline-block;
+}
+ 

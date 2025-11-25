@@ -1,4 +1,4 @@
-<header class="bg-white shadow px-6 py-4 flex items-center" style="display: flex; align-items: center;">
+ <header class="bg-white shadow px-6 py-4 flex items-center" style="display: flex; align-items: center;">
 
   <div class="header-left">
     <h1 class="text-2xl font-bold text-blue-600 flex-shrink-0">Elevate 360° - My Performance Dashboard</h1>
@@ -23,16 +23,19 @@
       <div class="flex items-center space-x-4">
 
         <div class="notification-container">
-          <button (click)="toggleNotification()" class="bell-button">
+          <button (click)="toggleNotification($event)" class="bell-button">
             <span class="icon-wrapper">
               <i class="fa-solid fa-bell"></i>
               <div *ngIf="!showNotification" class="notification-badge"></div>
             </span>
           </button>
-
-          <div *ngIf="showNotification" class="notification-box">
+           
+          <!-- <div *ngIf="showNotification" class="notification-box">
             Great News! <strong>Monica just soared right to the top of TTP leaderboard!</strong>
-          </div>
+          </div> -->
+            <div *ngIf="showNotification" class="notification-dropdown-wrapper">
+        <app-notifications (close)="closeNotification()"></app-notifications>
+      </div>
         </div>
 
       </div>

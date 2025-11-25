@@ -15,7 +15,7 @@ interface ApiResponse {
   overallProgress: number;
 }
 
-import { NgModule } from '@angular/core';
+import { ElementRef, NgModule } from '@angular/core';
 import { Component, ViewChild, HostListener, signal, OnInit, computed, ChangeDetectionStrategy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -33,6 +33,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { TsrService } from './services/tsr.service';
 import { Chart, registerables } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 
 Chart.register(...registerables);
 type MissionKey = keyof AppComponent['missionData'];
@@ -40,7 +41,7 @@ type MissionKey = keyof AppComponent['missionData'];
 @Component({
   selector: 'app-root',
   providers: [GoogleAuthService],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, MatDatepickerModule,
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, MatDatepickerModule,NotificationsComponent,
     MatFormFieldModule, MatInputModule, MatNativeDateModule, NgChartsModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
@@ -72,6 +73,7 @@ export class AppComponent implements OnInit {
     private googleAuth: GoogleAuthService,
     private filterService: FilterService,
     private tsrService: TsrService,
+    private eRef: ElementRef
   ) { }
   //ttp
   metrics = signal<MetricItem[]>([]);
@@ -257,10 +259,17 @@ getBarColorValue(score: number | string | null): string {
 
     showNotification: boolean = false;
 
-  toggleNotification(): void {
+  // toggleNotification(): void {
+  //   this.showNotification = !this.showNotification;
+  // }
+  
+    toggleNotification(event: MouseEvent): void {
+    event.stopPropagation(); // Prevent the click from immediately triggering the document listener
     this.showNotification = !this.showNotification;
   }
-  
+    closeNotification() {
+    this.showNotification = false;
+  }
   // helper to prettify column names
   private prettifyLabel(key: string): string {
     return key.replace(/_/g, ' ').replace(/\b\w/g, s => s.toUpperCase());
@@ -388,6 +397,7 @@ getBarColorValue(score: number | string | null): string {
 
   @HostListener('document:click', ['$event'])
   handleClickOutside(event: MouseEvent) {
+    
     const target = event.target as HTMLElement;
     const clickedInsideMenu = target.closest('#menuDropdown');
     const clickedButton = target.closest('button');
@@ -396,7 +406,16 @@ getBarColorValue(score: number | string | null): string {
       this.menuOpen = false;
     }
   }
-
+  @HostListener('document:click', ['$event'])
+  clickout(event: Event) {
+    if (this.showNotification) {
+      const target = event.target as HTMLElement;
+      const clickedInside = target.closest('.notification-container');
+      if (!clickedInside) {
+        this.showNotification = false;
+      }
+    }
+  }
   isInnovationModalOpen = false;
 
   openInnovationModal(event?: MouseEvent) {
