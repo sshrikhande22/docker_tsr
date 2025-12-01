@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "baseHref": "/tsr/",
             "outputPath": "dist/tsr",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -37,13 +38,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "1000kB",
-                  "maximumError": "2MB"
+                  "maximumWarning": "1mb",
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "20kB",
-                  "maximumError": "20kB"
+                  "maximumWarning": "10kB",
+                  "maximumError": "12kB"
                 }
               ],
               "outputHashing": "all"
@@ -96,6 +97,6 @@
     }
   },
   "cli": {
-    "analytics": "d6a106bf-daf2-4b92-8038-a6121a45e2f1"
+    "analytics": false
   }
 }

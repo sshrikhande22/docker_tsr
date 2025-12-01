@@ -14,10 +14,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 const bigquery = new BigQuery({
-  // CRITICAL: JSON.parse converts the environment string back into a JavaScript object
-  credentials: JSON.parse(process.env.GCP_SERVICE_ACCOUNT_KEY),
-  projectId: 'elevate360-poc',
-  scopes: SCOPES,
+  keyFilename: './src/keys.json',
+  projectId: 'elevate360-poc',
+  scopes: SCOPES,
 });
 // returns one row for Mounika (adjust LIKE if full name differs)
 
@@ -74,4 +73,8 @@ app.get('/api/mounika', async (req, res) => {
 
 
 const port = process.env.PORT || 3000;
+<<<<<<< HEAD
 app.listen(port, () => console.log(`backend listening on ${port}`));
+=======
+app.listen(port, () => console.log(`backend listening on ${port}`));
+>>>>>>> upstream/develop
