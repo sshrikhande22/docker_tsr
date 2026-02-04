@@ -1,5 +1,5 @@
 const express = require('express');
-const path = require('path'); // Required for path resolution
+const path = require('path'); // Add this line
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { BigQuery } = require('@google-cloud/bigquery');
@@ -8,18 +8,18 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-// --- ADDED: Serve Angular static files ---
+// --- ADD THIS: Serve static files from the 'public' directory ---
 app.use(express.static(path.join(__dirname, '../public')));
 
-// API Routes
+// Your existing API route
 app.get('/api/mounika', async (req, res) => {
-  // ... existing BigQuery logic ...
+  // ... existing code ...
 });
 
-// --- ADDED: Fallback to index.html for Angular Routing ---
+// --- ADD THIS: Handle Angular routing by serving index.html for all other routes ---
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Backend listening on ${port}`));
+app.listen(port, () => console.log(`backend listening on ${port}`));
