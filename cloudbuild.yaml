@@ -1,12 +1,27 @@
 steps:
-  # Build Backend
+  # Step 1: Build the Backend Image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/elevate-repo/api-backend:latest', '-f', 'Dockerfile-backend', '.']
+    args: [
+      'build', 
+      '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/elevate-repo/api-backend:latest', 
+      '-f', 'Dockerfile-backend', 
+      '.'
+    ]
 
-  # Build Frontend
+  # Step 2: Build the Frontend Image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/elevate-repo/angular-frontend:latest', '-f', 'Dockerfile-frontend', '.']
+    args: [
+      'build', 
+      '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/elevate-repo/angular-frontend:latest', 
+      '-f', 'Dockerfile-frontend', 
+      '.'
+    ]
 
+# Step 3: Push images to Artifact Registry
+images:
+  - 'us-central1-docker.pkg.dev/$PROJECT_ID/elevate-repo/api-backend:latest'
+  - 'us-central1-docker.pkg.dev/$PROJECT_ID/elevate-repo/angular-frontend:latest'
+  
 # --- CLOUD LOGGING CONFIGURATION ---
 options:
   logging: CLOUD_LOGGING_ONLY  # Options: LEGACY, GCS_ONLY, STACKDRIVER, CLOUD_LOGGING_ONLY, NONE
