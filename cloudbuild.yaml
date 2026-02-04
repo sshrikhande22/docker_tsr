@@ -7,7 +7,7 @@ steps:
       '.'
     ]
 
-  # Push to Container Registry
+  # Push the image to the registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/$PROJECT_ID/elevate360-app:latest']
 
