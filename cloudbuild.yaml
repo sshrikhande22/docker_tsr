@@ -17,18 +17,14 @@ steps:
       '.'
     ]
 
-  # 3. Push Backend to Container Registry
+  # 3. Push images to the registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/$PROJECT_ID/api-backend:latest']
-
-  # 4. Push Frontend to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/$PROJECT_ID/angular-frontend:latest']
 
-# Images to be stored in the Registry
 images:
   - 'gcr.io/$PROJECT_ID/api-backend:latest'
   - 'gcr.io/$PROJECT_ID/angular-frontend:latest'
-
 options:
   logging: CLOUD_LOGGING_ONLY
