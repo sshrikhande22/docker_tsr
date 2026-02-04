@@ -1,0 +1,12 @@
+steps:
+  # Build Backend
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/elevate-repo/api-backend:latest', '-f', 'Dockerfile-backend', '.']
+
+  # Build Frontend
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/elevate-repo/angular-frontend:latest', '-f', 'Dockerfile-frontend', '.']
+
+# --- CLOUD LOGGING CONFIGURATION ---
+options:
+  logging: CLOUD_LOGGING_ONLY  # Options: LEGACY, GCS_ONLY, STACKDRIVER, CLOUD_LOGGING_ONLY, NONE
