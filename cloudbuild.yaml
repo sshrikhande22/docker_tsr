@@ -25,7 +25,7 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/$PROJECT_ID/angular-frontend:latest']
 
-# Store these in the registry for deployment
+# List of images to be stored in the registry
 images:
   - 'gcr.io/$PROJECT_ID/api-backend:latest'
   - 'gcr.io/$PROJECT_ID/angular-frontend:latest'
